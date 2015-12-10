@@ -16,12 +16,6 @@ const port     = process.env.PORT || 8000;
 
 app.use(serve("static", {defer: true}));
 
-app.use(proxy({
-	host: "https://api.github.com",
-	match: /^\/api\/github\//i,
-	map: (path) => path.replace(/^\/api\/github\//i, "/")
-}));
-
 app.use(function *(next) {
 	const location = createLocation(this.path);
 	const webserver = process.env.NODE_ENV === "production" ? "" : "//" + hostname + ":8080";
