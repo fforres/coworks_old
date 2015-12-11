@@ -14,9 +14,10 @@ class Main extends React.Component {
 	 */
 	componentWillMount () {
 		if (__SERVER__) {
-			console.log("Hello server");
+			console.log("Hello2 server");
 		}
 		if (__CLIENT__) {
+			console.log("Hello2 client");
 			const transmitRemainingStargazers = () => {
 				if (!this.props.transmit.variables.pagesToFetch > 0) {
 					return;

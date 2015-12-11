@@ -6,13 +6,39 @@ import Cowork from "../cowork";
 
 class CoworksList extends React.Component {
   componentWillMount () {
-
+    if (__SERVER__) {
+      this.props.transmit.variables.coworks = [{
+        "name":"asd",
+        "title":1
+      },{
+        "name":"qwe",
+        "title":2
+      },{
+        "name":"zxc",
+        "title":3
+      }];
+    }
+    if (__CLIENT__) {
+      this.props.transmit.variables.coworks = [{
+        "name":"123",
+        "title":1
+      },{
+        "name":"456",
+        "title":2
+      },{
+        "name":"789",
+        "title":3
+      }];
+    }
+    console.log(this.props);
   }
   render () {
     return(
       <div className="app" stylesheet={CoworksList.css()} namespace="CoworksList">
         <div className="coworks">
-          <Cowork/>
+          {this.props.transmit.variables.coworks.map((el,i,as)=>{
+            return <Cowork {...el}/>
+          })}
         </div>
       </div>
     )
@@ -21,17 +47,13 @@ class CoworksList extends React.Component {
   static css () {
 		return (`
       & {
-				padding-left: 10px;
-				padding-right: 10px;
-				position: absolute;
-				background:grey;
-				height:100%;
-				width:50%;
-				z-index:100;
-				color: green;
 			}
 		`);
 	}
 }
 
-export default Transmit.createContainer(CoworksList);
+export default Transmit.createContainer(CoworksList,{
+  initialVariables:{
+    coworks:[]
+  }
+});

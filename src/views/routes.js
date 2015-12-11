@@ -1,4 +1,5 @@
-import Main from "views/Main";
+import Main from "./Main";
+import Hi from "./hi";
 import React from "react";
 import {Router, Route} from "react-router";
 
@@ -8,5 +9,6 @@ import {Router, Route} from "react-router";
 export default (
 	<Router>
 		<Route path="/" component={Main} />
+		<Route path="/hi" component={Hi} />
 	</Router>
 );

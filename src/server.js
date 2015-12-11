@@ -8,7 +8,7 @@ import {RoutingContext, match} from "react-router";
 import {createLocation} from "history";
 import Transmit from "react-transmit";
 
-import routes from "views/routes";
+import routes from "./views/routes";
 
 const app      = koa();
 const hostname = process.env.HOSTNAME || "localhost";
@@ -35,16 +35,16 @@ app.use(function *(next) {
 			Transmit.renderToString(RoutingContext, renderProps).then(({reactString, reactData}) => {
 				let template = (
 						`<!doctype html>
-					<html lang="en-us">
-						<head>
-							<meta charset="utf-8">
-							<title>react-isomorphic-starterkit</title>
-							<link rel="shortcut icon" href="/favicon.ico">
-						</head>
-						<body>
-							<div id="react-root">${reactString}</div>
-						</body>
-					</html>`
+							<html lang="en-us">
+								<head>
+									<meta charset="utf-8">
+									<title>react-isomorphic-starterkit</title>
+									<link rel="shortcut icon" href="/favicon.ico">
+								</head>
+								<body>
+									<div id="react-root">${reactString}</div>
+								</body>
+							</html>`
 				);
 
 				this.type = "text/html";
